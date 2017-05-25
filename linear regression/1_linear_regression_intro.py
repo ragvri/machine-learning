@@ -8,8 +8,8 @@ from sklearn import preprocessing, svm
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 
-# using this for scaling. We want the features between -1 to 1. Helps to increase accuracy and processing speed
-# cross_validation is used to get the training and testing samples.
+# using preprocessing for scaling. We want the features between -1 to 1. Helps to increase accuracy and processing speed
+# train-test-split is used to get the training and testing samples.
 # svm is used to do regression
 
 quandl.ApiConfig.api_key = 'vhkrsKz3TmUN6Qa4QjZK'
