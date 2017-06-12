@@ -38,9 +38,8 @@ m, b = best_fit_slope_and_intercept(xs, ys)
 
 regression_line = [(m * x) + b for x in xs]
 
-coeff_of_deter = coeff_of_determination(ys,regression_line)
+coeff_of_deter = coeff_of_determination(ys, regression_line)
 print(coeff_of_deter)
-
 
 plt.scatter(xs, ys)
 plt.plot(xs, regression_line)
