@@ -2,7 +2,7 @@ import tensorflow as tf
 import pickle
 import numpy as np
 
-f = open("/home/raghav/Desktop/sentiment_set.pickle", 'rb')
+f = open("sentiment_set.pickle", 'rb')
 data_pickle = pickle.load(f)
 train_x, train_y, test_x, test_y = data_pickle
 

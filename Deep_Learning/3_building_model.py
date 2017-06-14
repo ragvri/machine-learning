@@ -14,6 +14,9 @@ This motion is called Backward Propogation
 feed forward + backpropogation = epoch-> Cycle. Cost minimised at each cycle
 
 """
+
+# tf.Variable is used to train variables such as weights.
+# tf.placeholder is used to feed actual training examples
 import tensorflow as tf
 from tensorflow.examples.tutorials.mnist import input_data
 
@@ -46,17 +49,18 @@ def neural_network_model(data):
     # weights are tf variable where the variable is a tf random_normal and we specify the shape of the normal
     # for eg in the hidden_1_layer we have 28*28 inputs and n_nodes_h1 nodes. So a total of 28*28*n_nodes_h1 weights
 
+    # tf.truncated_normal selects random numbers whose mean is close to zero and values are close to 0
     hidden_1_layer = {'weights': tf.Variable(tf.truncated_normal([28 * 28, n_nodes_h1])),
-                      'biases': tf.constant(0.1, shape=[n_nodes_h1])}
+                      'biases': tf.Variable(tf.truncated_normal(shape=[n_nodes_h1]))}
 
     hidden_2_layer = {'weights': tf.Variable(tf.truncated_normal([n_nodes_h1, n_nodes_h2])),
-                      'biases': tf.constant(0.1, shape=[n_nodes_h2])}
+                      'biases': tf.Variable(tf.truncated_normal(shape=[n_nodes_h2]))}
 
     hidden_3_layer = {'weights': tf.Variable(tf.truncated_normal([n_nodes_h2, n_nodes_h3])),
-                      'biases': tf.constant(0.1, shape=[n_nodes_h2])}
+                      'biases': tf.Variable(tf.truncated_normal(shape=[n_nodes_h2]))}
 
     output_layer = {'weights': tf.Variable(tf.truncated_normal([n_nodes_h3, n_classes])),
-                    'biases': tf.constant(0.1, shape=[n_classes])}
+                    'biases': tf.Variable(tf.truncated_normal(shape=[n_classes]))}
 
     # (input*weights + bias)
     l1 = tf.add(tf.matmul(data, hidden_1_layer['weights']), hidden_1_layer['biases'])
@@ -76,8 +80,7 @@ def neural_network_model(data):
 def train_neural_network(x):
     prediction = neural_network_model(x)
     cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=prediction, labels=y))  # calculates the
-    # diff of prediction
-    # to known label
+    # diff of prediction to known label
     # minimise the cost
 
     optimizer = tf.train.AdamOptimizer().minimize(cost)
@@ -85,7 +88,7 @@ def train_neural_network(x):
     hm_epochs = 10
 
     with tf.Session() as sess:
-        sess.run(tf.initialize_all_variables())
+        sess.run(tf.global_variables_initializer())
 
         for epoch in range(hm_epochs):
             epoch_loss = 0
@@ -93,7 +96,7 @@ def train_neural_network(x):
                 epoch_x, epoch_y = mnist.train.next_batch(batch_size)
                 _, c = sess.run([optimizer, cost], feed_dict={x: epoch_x, y: epoch_y})
                 epoch_loss += c
-            print('Epoch', epoch, 'completed out of ', hm_epochs, ' loss ', epoch_loss)
+            print('Epoch', epoch+1, 'completed out of ', hm_epochs, ' loss ', epoch_loss)
 
         # testing
         correct = tf.equal(tf.argmax(prediction, 1),

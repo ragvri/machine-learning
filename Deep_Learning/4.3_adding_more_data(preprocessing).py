@@ -41,7 +41,7 @@ def init_process(fin, fout):  # formatting stuff for input data
 # init_process('/home/raghav/Desktop/trainingandtestdata/testdata.manual.2009.06.14.csv', 'test_set.csv')
 
 
-def create_lexicon(fin): # creating lexicon for our data
+def create_lexicon(fin):  # creating lexicon for our data
     lexicon = []
     with open(fin, 'r', buffering=100000, encoding='latin-1') as f:
         try:
@@ -60,7 +60,7 @@ def create_lexicon(fin): # creating lexicon for our data
         except Exception as e:
             print(str(e))
 
-    with open('lexicon-2500-2638.pickle', 'wb') as f:  # 2500 as one in every 2500 and 2600 is the number of words in
+    with open('lexicon-2500-2638.pickle', 'wb') as f:  # 2500 as one in every 2500 and 2638 is the number of words in
         # lexicon
         pickle.dump(lexicon, f)
 
@@ -96,20 +96,17 @@ def convert_to_vec(fin, fout, lexicon_pickle):
         print(counter)
 
 
-# this is way too big, so we will run this in line
-
-convert_to_vec('/home/raghav/Documents/deep_learning_datasets/test_set.csv', 'processed-test-set.csv',
-               'lexicon-2500-2638.pickle')
+# convert_to_vec('/home/raghav/Documents/deep_learning_datasets/test_set.csv', 'processed-test-set.csv', 'lexicon-2500-2638.pickle')
 
 
 def shuffle_data(fin):
     df = pd.read_csv(fin, error_bad_lines=False)
     df = df.iloc[np.random.permutation(len(df))]
     print(df.head())
-    df.to_csv('train_set_shuffled.csv', index=False)
+    df.to_csv('/home/raghav/Documents/train_set_shuffled.csv', index=False)
 
 
-# shuffle_data('train_set.csv')
+shuffle_data('/home/raghav/Documents/deep_learning_datasets/train_set.csv')
 
 
 def create_test_data_pickle(fin):
@@ -131,5 +128,5 @@ def create_test_data_pickle(fin):
     feature_sets = np.array(feature_sets)
     labels = np.array(labels)
 
-
+# this is too big. Will do inline later
 # create_test_data_pickle('processed-test-set.csv')

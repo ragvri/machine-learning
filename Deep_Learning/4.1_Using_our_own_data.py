@@ -12,8 +12,6 @@ chair is in the sentence, table is also there
 [1,0,0,1]
 """
 
-import tensorflow as tf
-import nltk
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer  # running, ran, run are same thing
 import numpy as np
@@ -25,7 +23,7 @@ lemmatizer = WordNetLemmatizer()
 hm_lines = 10000000
 
 
-def create_lexicon(pos, neg): # creates a list of words that are important
+def create_lexicon(pos, neg):  # creates a list of words that are important
     lexicon = []
     for fi in [pos, neg]:
         with open(fi, 'r') as f:
@@ -46,7 +44,7 @@ def create_lexicon(pos, neg): # creates a list of words that are important
     return l2
 
 
-def sample_handling(sample, lexicon, classification): # creates a list of lists where the first element of list
+def sample_handling(sample, lexicon, classification):  # creates a list of lists where the first element of list
     # denotes if word of lexicon present in our sample and the second tells us if it is pos or neg sampple
     featureset = []
     # [

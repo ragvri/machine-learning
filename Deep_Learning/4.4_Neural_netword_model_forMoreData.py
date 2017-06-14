@@ -61,7 +61,7 @@ def train_neural_network(x):
             if epoch != 1:
                 saver.restore(sess, "model.ckpt")
             epoch_loss = 1
-            with open('lexicon.pickle', 'rb') as f:
+            with open('lexicon-200-2638.pickle', 'rb') as f:
                 lexicon = pickle.load(f)
             with open('/home/raghav/Documents/deep_learning_datasets/train_set_shuffled.csv', buffering=20000, encoding='latin-1') as f:
                 batch_x = []
