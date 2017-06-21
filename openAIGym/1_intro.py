@@ -17,8 +17,8 @@ LR = 1e-3
 env = gym.make('CartPole-v0')  # defines the environment to be CartPole environment
 env.reset()
 goal_steps = 500
-score_requirement = 50
-initial_games = 10000
+score_requirement = 60
+initial_games = 20000
 
 
 def some_random_games():
