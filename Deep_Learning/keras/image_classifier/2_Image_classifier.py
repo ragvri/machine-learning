@@ -115,7 +115,7 @@ validation_generator = train_datagen.flow_from_directory(directory="/home/raghav
 model.save_weights('first_try.h5')
 """
 model.load_weights('first_try.h5')
-img = load_img("/home/raghav/Desktop/data_image/test/dog/dog.3000.jpg", target_size=(150, 150))
+img = load_img("/home/raghav/Desktop/data_image/test/cat/cat.3000.jpg", target_size=(150, 150))
 x = img_to_array(img)
 x = np.expand_dims(x, axis=0)
 preds = model.predict_classes(x)
