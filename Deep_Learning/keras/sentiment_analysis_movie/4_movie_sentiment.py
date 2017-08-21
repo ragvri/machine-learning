@@ -3,7 +3,6 @@ contains 25,000 highly polar moving reviews (good or bad) for training and the s
 problem is to determine whether a given moving review has a positive or negative sentiment.
 """
 
-import numpy as np
 from keras.datasets import imdb  # keras provides access to the imdb dataset built-in
 from keras.models import Sequential
 from keras.layers import Dense, Flatten
@@ -20,14 +19,17 @@ top_words = 5000
 # a sequence of integers
 
 max_words_in_a_review = 500
+
+# sequence.pad_sequences() creates a list where each review is of length = max_words_in_review. If length of actual
+# review greater than 500, it is truncated, else 0s are padded in the beginning
 X_train = sequence.pad_sequences(X_train, maxlen=max_words_in_a_review)
 X_test = sequence.pad_sequences(X_test, maxlen=max_words_in_a_review)
 
-# now we will create our model. We will first use Embedding layer setting the vocabulary to be 5000 , the vector size
-#  is 32 and input lenght is 500. The output is a 2d matrix of 500*32 size. Next we will Flatten this and add a dense
-# layer of 250 outputs and then another dense layer of 1 output unit
+# now we will create our model. We will first use Embedding layer setting the vocabulary to be 5000 ,  the output
+# vector size is 32 and input length is 500. The output is a 2d matrix of 500*32 size. Next we will Flatten this and
+# add a dense layer of 250 outputs and then another dense layer of 1 output unit
 
-# now we do word embeddings word embeddings: This is a technique where words are encoded as real-valued vectors in a
+# now we do word embeddings: This is a technique where words are encoded as real-valued vectors in a
 # high-dimensional space, where the similarity between words in terms of meaning translates to closeness in the
 # vector space
 
@@ -46,6 +48,7 @@ X_test = sequence.pad_sequences(X_test, maxlen=max_words_in_a_review)
 #            as a consequence, index 0 cannot be used in the vocabulary (input_dim should equal size of vocabulary + 1).
 # input_length: Length of input sequences, when it is constant. This argument is required if you are going to connect
 #                Flatten then Dense layers upstream (without it, the shape of the dense outputs cannot be computed).
+
 
 model = Sequential()
 model.add(Embedding(input_dim=top_words, output_dim=32, input_length=max_words_in_a_review))
