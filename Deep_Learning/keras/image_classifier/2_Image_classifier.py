@@ -109,10 +109,10 @@ validation_generator = train_datagen.flow_from_directory(directory="/home/raghav
                                                          class_mode='binary')
 # all images are resized to (150,150)
 
-"""model.fit_generator(train_generator, epochs=50, validation_data=validation_generator,
+model.fit_generator(train_generator, epochs=50, validation_data=validation_generator,
                     steps_per_epoch=2000 // batch_size,
                     validation_steps=800 // batch_size)
-model.save_weights('first_try.h5')
+#model.save_weights('first_try.h5')
 """
 model.load_weights('first_try.h5')
 img = load_img("/home/raghav/Desktop/data_image/test/cat/cat.3000.jpg", target_size=(150, 150))
@@ -124,4 +124,4 @@ print(preds, prob)
 if preds:
     print("Dog")
 else:
-    print("cat")
+    print("cat")"""
