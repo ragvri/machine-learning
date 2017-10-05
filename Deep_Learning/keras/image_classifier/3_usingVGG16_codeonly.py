@@ -74,9 +74,7 @@ def predict_image_class(file):
     else:
         print("None")
 
-"""
 save_bottleneck_features()
-train_top_model()
-"""
-predict_image_class("/home/raghav/Pictures/1.png")
-gc.collect()
+#train_top_model()
+#predict_image_class("/home/raghav/Pictures/1.png")
+#gc.collect()
