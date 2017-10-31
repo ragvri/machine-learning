@@ -1,6 +1,6 @@
 """ Developing tflearn model for cartpole Evaluations on openAI
     Here I am working  with CartPol-v0 wherin I have to balance a pole on the cart
-    Every frame it is balanced, 1 score is added
+    For every balanced frame, 1 score is added
 
 """
 
